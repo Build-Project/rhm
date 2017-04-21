@@ -55,11 +55,11 @@
         <div class="clearfix"></div>
         <form id="form-login" method="POST" action="{{ url('/login') }}">
             {{ csrf_field() }}
-            <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
-                <input type="email" class="form-control" placeholder="Email Address" name="email" id="email" value="{{ old('email') }}" required>
-                @if ($errors->has('email'))
+            <div class="form-group has-feedback {{ $errors->has('userName') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" placeholder="Email Address" name="userName" id="email" value="{{ old('userName') }}" required>
+                @if ($errors->has('userName'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
+                        <strong>{{ $errors->first('userName') }}</strong>
                     </span>
                 @endif
             </div>

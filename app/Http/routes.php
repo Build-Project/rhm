@@ -19,7 +19,8 @@ Route::auth();
 
 Route::post('/register',array('uses'=>'Auth\AuthController@create'));
 Route::get('/admin', 'DashboardController@index');
-/*Route::group(['middleware'=>'auth'], function(){
+Route::group(['middleware'=>'auth'], function(){
+    Route::post('/login', 'LoginController@login');
 	Route::get('/admin/slideshow','SlideshowController@slideShowPage');
     Route::get('/admin/slideshow/list','SlideshowController@listSlideshows');
-});*/
+});

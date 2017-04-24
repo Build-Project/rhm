@@ -65,15 +65,15 @@ class AuthController extends Controller
      */
     protected function create(Request $request)
     {
-
         $user = new User;
         $user->ZUName = $request['userName'];
         $user->ZUPassword = bcrypt($request['password']);
         $user->save();
-        /*return User::create([
-            'ZUName' => $data['userName'],
-            //'email' => $data['email'],
-            'ZUPassword' => bcrypt($data['password']),
-        ]);*/
+        Redirect::back();
+    }
+
+    protected function login(Request $request)
+    {
+        
     }
 }

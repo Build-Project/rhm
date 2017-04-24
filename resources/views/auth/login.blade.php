@@ -48,7 +48,7 @@
 </div>
 <div class="login-box">
     <div class="login-logo">
-        <img src="images/hmfm/hmfm.png" />
+        <!--<img src="images/hmfm/hmfm.png" />-->
     </div>
     <div class="login-box-body">
         <h3 class="login-box-msg">Admin | Login</h3>
@@ -56,7 +56,7 @@
         <form id="form-login" method="POST" action="{{ url('/login') }}">
             {{ csrf_field() }}
             <div class="form-group has-feedback {{ $errors->has('userName') ? ' has-error' : '' }}">
-                <input type="text" class="form-control" placeholder="Email Address" name="userName" id="email" value="{{ old('userName') }}" required>
+                <input type="text" class="form-control" placeholder="Username" name="userName" id="userName" value="{{ old('userName') }}" required>
                 @if ($errors->has('userName'))
                     <span class="help-block">
                         <strong>{{ $errors->first('userName') }}</strong>

@@ -69,11 +69,6 @@ class AuthController extends Controller
         $user->ZUName = $request['userName'];
         $user->ZUPassword = bcrypt($request['password']);
         $user->save();
-        Redirect::back();
-    }
-
-    protected function login(Request $request)
-    {
-        
+        return redirect()->back();
     }
 }

@@ -79,6 +79,9 @@
             </div>
         </form>
     </div>
+    <div>
+      
+    </div>
     <img src="images/shadow.png" style="width: 100%;" />
     <!-- /.login-box-body -->
 </div>

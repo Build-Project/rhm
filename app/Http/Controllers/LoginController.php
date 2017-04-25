@@ -20,19 +20,12 @@ class LoginController extends Controller
         $this->auth = $auth;
     }
 
-    function login(Request $request){
-        $username = $request['userName'];
-        $password = $request['password'];
-        if(Auth::attempt([
-            'ZUName' => $username,
-            'ZUPassword' => $password
-        ])){
-            return redirect()->route('admin.index');
-        }else {
-            return redirect()->back()
-                ->with('message','Incorrect username or password')
-                ->with('status', 'danger')
-                ->withInput();
-        }
+    public function showLoginPage(){
+        return view('auth.login', array('title'=>'Login Page'));
+    }
+
+    public function customLogin(Request $request){
+
+       return view('welcome', array('msg'=>$request['userName']));
     }
 }

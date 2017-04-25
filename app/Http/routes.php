@@ -17,10 +17,11 @@ Route::get('/', function () {
 
 Route::auth();
 
+//Route::get('/login', 'LoginController@showLoginPage');
 Route::post('/register',array('uses'=>'Auth\AuthController@create'));
 Route::get('/admin', 'DashboardController@index');
 Route::group(['middleware'=>'auth'], function(){
-    Route::post('/login', 'LoginController@login');
+    Route::post('/login', 'LoginController@customLogin');
 	Route::get('/admin/slideshow','SlideshowController@slideShowPage');
     Route::get('/admin/slideshow/list','SlideshowController@listSlideshows');
 });

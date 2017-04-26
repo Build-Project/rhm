@@ -4,9 +4,9 @@
             <!-- Logo -->
             <a href="#" class="logo hidden-xs">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini" >RHM</span>
+                <span class="logo-mini" >Admin</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg" id="ffa">RHM Admin</span>
+                <span class="logo-lg" id="ffa">Admin</span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">

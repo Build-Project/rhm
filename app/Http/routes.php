@@ -15,10 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::auth();
+//Route::auth();
 
-Route::get('/admin', 'DashboardController@index');
-Route::group(['middleware'=>'auth'], function(){
+//Route::get('/admin', 'DashboardController@index');
+/*Route::group(['middleware'=>'auth'], function(){
 	Route::get('/admin/slideshow','SlideshowController@slideShowPage');
     Route::get('/admin/slideshow/list','SlideshowController@listSlideshows');
+});*/
+
+Route::group(['prefix'=>'/admin/coach'], function(){
+    Route::get('/', 'CoachController@index');
+    Route::get('/list', 'CoachController@listCoachs');
 });

@@ -4,14 +4,22 @@
 
 @section('content')
     <script type="text/javascript">
-
-        var app = angular.module('slideshow', ['angularUtils.directives.dirPagination','angular-loading-bar', 'ngAnimate']).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+        var app = angular.module('module', ['angularUtils.directives.dirPagination','angular-loading-bar', 'ngAnimate']).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
             cfpLoadingBarProvider.includeSpinner = false;
         }]).config(function($interpolateProvider) {
             $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
         });
         
-        app.controller('slideshowController',['$scope','$http',function($scope, $http) {
+        app.controller('moduleController',['$scope','$http',function($scope, $http) {
+
+            $scope.listModules = function(){
+                $http({
+                        method:'GET',
+                        url:'{{url('/admin/module/list/json')}}'
+                    }).success(function(response){
+                        $scope.modules = response;
+                    });
+            }
 
             $scope.deleteModule = function(moduleId){
                 swal({   
@@ -26,7 +34,7 @@
                 }, function(){
                     $http({
                         'method':'DELETE',
-                        'url':'{{url('/admin/module/delete')}}'+'/'+moduleId,
+                        'url':'{{url('/admin/module/delete')}}'+'/'+moduleId
                     }).success(function(response){
                         if(response.status == 'success'){
                             swal({
@@ -60,6 +68,50 @@
                 {value: "30", label: "30"},
             ];
             $scope.pageSize.row = $scope.pageSize.rows[1].value;
+
+
+            $scope.clearModuleData = function(){
+                $('#moduleName').val('');
+                $('#moduleType').val('');
+                $('#moduleDes').val('');
+            }
+
+            $scope.createModule = function(){
+                swal({   
+                    title: "<span style='font-size: 25px;'>You are about to create new Module!</span>",   
+                    text: "Click OK to continue or CANCEL",   
+                    type: "info", 
+                    html: true,
+                    showCancelButton: true,   
+                    closeOnConfirm: false,   
+                    showLoaderOnConfirm: true, 
+                    
+                }, function(){
+                    $http({
+                        'method':'POST',
+                        'url':'{{url('/admin/module/create')}}',
+                        'data':{
+                            'moduleName':$('#moduleName').val(),
+                            'moduleType':$('#moduleType').val(),
+                            'moduleStatus':$('#moduleStatus').val(),
+                            'moduleDes': $('#moduleDes').val()
+                        }
+                    }).success(function(res){
+                        if(res.status == 'success'){
+                            swal({
+                                    title:"SUCCESSFUL",
+                                    text: res.msg, 
+                                    type:"success", 
+                                    html: true,
+                                    timer: 2000,
+                                });
+                        }
+                        setTimeout(function(){		
+                            window.location.reload();
+                        },2000);
+                    });
+                });
+            }
         }]);
 </script>
 <script>
@@ -70,7 +122,7 @@
     });
    
 </script>
-    <div class="content-wrapper" ng-app="slideshow" ng-controller="slideshowController">
+    <div class="content-wrapper" ng-app="module" ng-controller="moduleController">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>Modules</h1>
@@ -122,7 +174,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class="row">
-                                    <div class="tablecontainer table-responsive">
+                                    <div class="tablecontainer table-responsive" data-ng-init="listModules()">
                                         <table class="table table-hover">
                                             <tr>
                                                 <th>ID</th>
@@ -130,24 +182,20 @@
                                                 <th>Description</th>
                                                 <th>Type</th>
                                                 <th>Status</th>
-                                                <th>Sort Order</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
-                                            @foreach($modules as $module)
-                                                <tr>
-                                                    <td>{{$module->MID}}</td>
-                                                    <td>{{$module->MName}}</td>
-                                                    <td>{{$module->MDescription}}</td>
-                                                    <td>{{$module->MType}}</td>
-                                                    <td>{{$module->MStatus}}</td>
-                                                    <td>{{$module->MSR}}</td>
-                                                    <td class="text-center" style="min-width: 100px;">
-                                                        <a href="/module/update/{{$module->MID}}"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>
-                                                        <a href="#" ng-click="deleteModule({{$module->MID}})"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
-                                                        <a href="/module/view/{{$module->MID}}"><button type="button" data-toggle="tooltip" class="btn btn-xs" title="view"><i class="fa fa-eye text-info"></i></button></a>
-                                                    </td>
-                                                <tr>
-                                            @endforeach
+                                            <tr dir-paginate="m in modules | itemsPerPage: pageSize.row">
+                                                <td>{[{m.MID}]}</td>
+                                                <td>{[{m.MName}]}</td>
+                                                <td>{[{m.MDescription}]}</td>
+                                                <td>{[{m.MType}]}</td>
+                                                <td>{[{m.MStatus=='1'?'Active':'Inactive'}]}</td>
+                                                <td class="text-center" style="min-width: 100px;">
+                                                    <a href="#" ng-click="editModule('m.MID')"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>
+                                                    <a href="#" ng-click="deleteModule('m.MID')"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
+                                                    <a href="/module/view/{[{m.MID}]}"><button type="button" data-toggle="tooltip" class="btn btn-xs" title="view"><i class="fa fa-eye text-info"></i></button></a>
+                                                </td>
+                                            </tr>
                                         </table>
                                     </div>
                                 </div>
@@ -157,70 +205,61 @@
                 </div>
             </div>
 
-            <div class="modal fade modal-default" id="frmModule" role="dialog">
+            <div class="modal fade modal-default" id="frmModule" role="dialog" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog  modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" ng-click="cancelEventClick()" class="close" data-dismiss="modal">&times;</button>
+                            <button type="button" ng-click="clearModuleData()" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title"><b id="tEvent">Create Module</b></h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <form id="frmCreateModule">
-                                <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Name <span class="requrie">(Required)</span></label>
-                                            <input id="eventSubject" name="eventSubject" class="form-control" type="text" placeholder="">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Name <span class="requrie">(Required)</span></label>
+                                                <input id="moduleName" name="moduleName" class="form-control" type="text" placeholder="">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <div class="col-md-6">
                                         
-                                    <div class="clearfix"></div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Duration <span class="requrie">(Required)</span></label>
-                                            <input type="text" class="form-control" name="eventDuration" id="eventDuration"/>
+                                        <div class="clearfix"></div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Type</label>
+                                                <input type="text" class="form-control" name="moduleType" id="moduleType"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Status</label> 
+                                                <select class="form-control select2" name="moduleStatus" id="moduleStatus" style="width: 100%;">
+                                                    <option value="1">Active</option>
+                                                    <option value="0">Inactive</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Description </label>
+                                                <textarea rows="4" cols="" name="moduleDes" id="moduleDes" class="form-control"></textarea>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Assign To </label> 
-                                            <select class="form-control select2" name="eventAssignTo" id="eventAssignTo" style="width: 100%;">
-                                                <option value="">-- SELECT A Assign To --</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Budget</label> 
-                                            <input id="eventBudget" name="eventBudget" class="form-control" type="text" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Description </label>
-                                            <textarea rows="4" cols="" name="eventDescription" id="eventDescription" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
                                 </form>
                             </div>
-
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="btnEventCancel" ng-click="cancelEventClick()" name="btnEventCancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                            &nbsp;&nbsp;
-                            <button type="button" id="btnEventSave" name="btnEventSave"  class="btn btn-primary pull-right">Save</button>
-
+                            <div class='col-xs-12'>
+                                <button type="reset" id="btnCancel" ng-click="clearModuleData()" name="btnCancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                &nbsp;&nbsp;
+                                <button type="button" id="btnSave" name="btnSave"  class="btn btn-primary pull-right" ng-click='createModule()'>Save</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-	
         </section>
     </div>
 @endsection

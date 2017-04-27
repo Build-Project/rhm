@@ -18,12 +18,14 @@ class ModuleController extends Controller
         $module->MType = $request['moduleType'];
         $module->MSR = $request['moduleSortOrder'];
         $module->MStatus = $request['moduleStatus'];
-        $module->save();
-        return redirect()->back();
+        if($module->save()){
+              return response(['msg'=>'Module Inserted Successfully!', 'status'=>'success']);
+        }
+        return response(['msg'=>'Failed inserting the module.', 'status'=>'failed']);
     }
 
     public function listModules(){
-        $modules = Module::all();
+        $modules = Module::all();//where('MStatus', '=', 1)->get();
         return view('admin.module.list', array('title'=>'Module Page', 'modules'=>$modules));
     }
 
@@ -32,11 +34,17 @@ class ModuleController extends Controller
         if($module->delete($request->all())){
              return response(['msg'=>'Module Deleted', 'status' => 'success']);
         }
-        return response(['msg'=>'Failed Deleting the product', 'status' => 'failed']);
+        return response(['msg'=>'Failed Deleting the module', 'status' => 'failed']);
     }
 
     public function loadModuleDataById($id){
         $module = Module::find($id);
-        return view('admin.module.update', array('title'=>'Update Module Page','module'=>$module));
+        return view('admin.module.update', array('title'=>'Update Module Page','module'=>$module, 'jsonModule'=>$module->toJson()));
+    }
+
+
+    public function listModulesAsJson(){
+         $modules = Module::all();
+         return $modules->toJson();
     }
 }

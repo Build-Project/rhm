@@ -29,6 +29,7 @@ Route::get('/admin', 'DashboardController@index');
 
 Route::group(['prefix'=>'admin/module'], function(){
     Route::get('/', 'ModuleController@listModules');
+    Route::get('/list/json', 'ModuleController@listModulesAsJson');
     Route::delete('/delete/{id}', 'ModuleController@deleteModule');
     Route::get('/update/{id}', 'ModuleController@loadModuleDataById');
     Route::get('/create', function(){

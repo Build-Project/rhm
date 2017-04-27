@@ -63,10 +63,12 @@
         }]);
 </script>
 <script>
-    $('#btn-create').click(function(){
-            alert()
-            $('#btn_create_module').click();
+    $(document).ready(function(){
+        $('#btn-create').click(function(){
+            $('#frmModule').modal('toggle');
         });
+    });
+   
 </script>
     <div class="content-wrapper" ng-app="slideshow" ng-controller="slideshowController">
         <!-- Content Header (Page header) -->
@@ -84,7 +86,7 @@
                 <div class="box-header with-border">
                     <div style="background: #fff;margin-top: 15px;">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-left: -5px;">
-                            <a href="#" id="btn-create" class="btn btn-info btn-app" ><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
+                            <button type="button" id="btn-create" class="btn btn-app" ><i class="fa fa-plus" aria-hidden="true"></i> Create</button>
                         </div>
                     </div>
                 </div>
@@ -155,7 +157,6 @@
                 </div>
             </div>
 
-            <input type="hidden" id="btn_create_module" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#frmModule" />
             <div class="modal fade modal-default" id="frmModule" role="dialog">
                 <div class="modal-dialog  modal-lg">
                     <div class="modal-content">

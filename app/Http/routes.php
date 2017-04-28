@@ -17,12 +17,14 @@ Route::get('/', function () {
 
 //Route::auth();
 
+
 //Route::get('/login', 'LoginController@showLoginPage');
 Route::post('/register',array('uses'=>'Auth\AuthController@create'));
 Route::get('/admin', 'DashboardController@index');
 
 /*Route::group(['middleware'=>'auth'], function(){
     Route::post('/login', 'LoginController@customLogin');
+    Route::get('/admin', 'DashboardController@index');
 	Route::get('/admin/slideshow','SlideshowController@slideShowPage');
     Route::get('/admin/slideshow/list','SlideshowController@listSlideshows');
 });*/
@@ -36,4 +38,8 @@ Route::group(['prefix'=>'admin/module'], function(){
         return view('admin.module.create', array('title'=>'Create Module | Page'));
     });
     Route::post('/create', 'ModuleController@createModule');
+});
+Route::group(['prefix'=>'/admin/coach'], function(){
+    Route::get('/', 'CoachController@index');
+    Route::get('/list', 'CoachController@listCoachs');
 });

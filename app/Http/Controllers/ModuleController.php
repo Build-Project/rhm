@@ -26,7 +26,7 @@ class ModuleController extends Controller
 
     public function listModules(){
         $modules = Module::all();//where('MStatus', '=', 1)->get();
-        return view('admin.module.list', array('title'=>'Module Page', 'modules'=>$modules));
+        return view('admin.module', array('title'=>'Module Page', 'modules'=>$modules));
     }
 
     public function deleteModule($id, Request $request){

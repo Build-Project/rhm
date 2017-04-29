@@ -7,20 +7,20 @@
                                             src="{{asset('images/Dashboard.png')}}"
                                             style="width: 16px;"> &nbsp;&nbsp;<span>Dashboard</span> </a></li>
 
-                            <li class='treeview' id="marketing"><a href="#"><img src="{{asset('images/Marketing.png')}}"
+                            <li class='treeview-menu' id="slideshow"><a href="#"><img src="{{asset('images/Marketing.png')}}"
                                             style="width: 16px;">&nbsp;&nbsp;<!-- <i class="fa fa-shopping-cart" aria-hidden="true"></i> -->
-                                    <span>Marketing</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                <ul class="treeview-menu" id="ul_marketing">
+                                    <span>Slide Show</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu" id="ul_slideshow">
 
-                                    <li id="ul_li_campaign"><a
-                                                href="${pageContext.request.contextPath}/list-campaigns"> <i
+                                    <li id="ul_li_add"><a
+                                                href="{{url('/admin/slideshow/add')}}"> <i
                                                     class='fa fa-circle-o color_menu' aria-hidden='true'
-                                                    id="marketing_icon_campaign"></i> <span>Campaigns</span></a></li>
+                                                    id="slideshow_icon_add"></i> <span>Add New Slide</span></a></li>
 
-                                    <li id="ul_li_lead"><a
-                                                href="${pageContext.request.contextPath}/list-leads"> <i
+                                    <li id="ul_li_edit"><a
+                                                href="{{url('/admin/slideshow/edit')}}"> <i
                                                     class='fa fa-circle-o color_menu' aria-hidden='true'
-                                                    id="marketing_icon_lead"></i> <span>Leads</span>
+                                                    id="slideshow_icon_edit"></i> <span>Update</span>
                                         </a></li>
                                     <li id="ul_li_competitor"><a
                                                 href="${pageContext.request.contextPath}/list-competitors"> <i

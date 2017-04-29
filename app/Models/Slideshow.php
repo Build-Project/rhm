@@ -8,4 +8,6 @@ class Slideshow extends Model
 {
    protected $table = 'z_slideshow';
    protected $primaryKey = "SLSID";
+
+   protected $timestamp = false;
 }

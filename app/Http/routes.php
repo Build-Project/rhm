@@ -29,6 +29,11 @@ Route::get('/admin', 'DashboardController@index');
     Route::get('/admin/slideshow/list','SlideshowController@listSlideshows');
 });*/
 
+Route::group(['prefix' => 'admin/slideshow'], function(){
+    Route::get('/','SlideshowController@slideShowPage');
+    Route::get('/list','SlideshowController@listSlideshows');
+});
+
 Route::group(['prefix'=>'admin/module'], function(){
     Route::get('/', 'ModuleController@listModules');
     Route::get('/list/json', 'ModuleController@listModulesAsJson');

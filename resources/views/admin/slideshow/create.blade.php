@@ -3,21 +3,29 @@
 @section('title',$title)
 
 @section('content')
-<div class="content-wrapper" ng-app="caseApp" ng-controller="caseController">
-	<!-- Content Header (Page header) -->
+<div class="content-wrapper">
+	<!-- Content Header (Page header) --> 
 	<section class="content-header">
 		<h1>Create Slideshow</h1>
 		<ol class="breadcrumb">
-			<li><a href="${pageContext.request.contextPath}"><i class="fa fa-home"></i> Home</a></li>
+			<li><a href="{{url('/')}}"><i class="fa fa-home"></i> Home</a></li>
 			<li><a href="#"> Create Slideshow</a></li>
 		</ol>
 	</section>
+    <script>
+        $(document).ready(function(){
+            $('#btn_save').click(function(){
+               // $('#frmSlide').submit();
+            });
+        });
+    </script>
     <section class="content">
 		<div class="box box-danger">			
 			<div class="box-body">			
-				<form method="post" id="form-case" data-ng-init="startupPage()">
+				<form method="post" id="frmSlide" url="{{url('/admin/slideshow/create')}}" enctype="multipart/form-data">
+                    {!! csrf_field() !!}
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-left: -5px;">
-						<button type="button" class="btn btn-info btn-app" id="btn_save"> <i class="fa fa-save"></i> Save</button> 
+						<button type="submit" class="btn btn-info btn-app" id="btn_save"> <i class="fa fa-save"></i> Save</button> 
 						<a class="btn btn-info btn-app" id="btn_clear"> <i class="fa fa-refresh" aria-hidden="true"></i>Clear</a> 
 						<a class="btn btn-info btn-app" href="{{url('/admin/slideshow')}}"> <i class="fa fa-reply"></i> Back </a>
 					</div>
@@ -42,10 +50,19 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
+                                    <div class="col-xs-12">
+                                        <label class="font-label">Status <span class="requrie">(Required)</span></label>
+                                        <div class="form-group">
+                                            <select class="form-control select2" name="slideStatus" id="slideStatus" style="width:100%">
+                                                <option value="1">Publish</option>
+                                                <option value="0">Unpublish</option> 
+										    </select>
+                                        </div>
+                                    </div>
                                      <div class="col-xs-12">
                                         <label class="font-label">Image <span class="requrie">(Required)</span></label>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="slideName" name="slideName">
+                                            <input type="file" class="form-control" id="slideImage" name="slideImage">
                                         </div>
                                     </div>
                                 </div>

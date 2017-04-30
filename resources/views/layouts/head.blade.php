@@ -41,6 +41,9 @@
 			.iPanel{ margin-top: -25px; }
 			.color_msg{ color:#F8BB86 !important; }
 			.min-height-300{ height: 300px !important;  }
+			.content-wrapper{
+				min-height: 80vh;
+			}
 		</style>
 
 		<script src="{{asset('bootstrap/js/jquery.min.js')}}"></script>
@@ -67,5 +70,4 @@
 		<script src="{{asset('dist/sweetalert/sweetalert-dev.js')}}"></script>
 		<script src="{{asset('plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
 		<script src="{{asset('bootstrap/menu/menu.js')}}"></script>
-		<script src="{{asset('js.mine/uploadFile.js')}}"></script>
 	</head>

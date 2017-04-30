@@ -52,7 +52,7 @@
                 <div class="box-header with-border">
                     <div style="background: #fff;margin-top: 15px;">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-left: -5px;">
-                            <a href="/create-customer" class="btn btn-info btn-app" ><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
+                            <a href='{{url('/admin/slideshow/create')}}' class="btn btn-info btn-app" ><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
                         </div>
                     </div>
                 </div>
@@ -104,8 +104,10 @@
                                                 <td>{[{s.SLSDescription}]}</td>
                                                 <td>{[{s.CDate}]}</td>
                                                 <td>{[{s.CBy}]}</td>
-                                                <td>
-
+                                                <td class="text-center" style="min-width: 100px;">
+                                                    <a href="{{url('/admin/slideshow/edit/{[{s.SLSID}]}')}}"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>
+                                                    <a href="#" ng-click="deleteModule('m.MID')"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
+                                                    <a href="/module/view/{[{m.MID}]}"><button type="button" data-toggle="tooltip" class="btn btn-xs" title="view"><i class="fa fa-eye text-info"></i></button></a>
                                                 </td>
                                             </tr>
                                         </table>

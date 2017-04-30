@@ -16,7 +16,6 @@
         <script src="{{asset('plugins/fastclick/fastclick.min.js')}}"></script>
         <script src="{{asset('dist/js/app.min.js')}}"></script>
         <script src="{{asset('dist/js/demo.js')}}"></script>
-        <script src="{{asset('js.mine/function.mine.js')}}"></script>
         <script type="text/javascript">
 
             $(document).ready(function() {

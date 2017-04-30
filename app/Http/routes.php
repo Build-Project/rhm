@@ -32,6 +32,11 @@ Route::get('/admin', 'DashboardController@index');
 Route::group(['prefix' => 'admin/slideshow'], function(){
     Route::get('/','SlideshowController@slideShowPage');
     Route::get('/list','SlideshowController@listSlideshows');
+    Route::get('/create', function(){
+        return view('admin.slideshow.create', array('title'=>'Create Slideshow Page'));
+    });
+
+    Route::post('/create','SlideshowController@create');
 });
 
 Route::group(['prefix'=>'admin/module'], function(){
@@ -44,7 +49,5 @@ Route::group(['prefix'=>'admin/module'], function(){
     });
     Route::post('/create', 'ModuleController@createModule');
 });
-Route::group(['prefix'=>'/admin/coach'], function(){
-    Route::get('/', 'CoachController@index');
-    Route::get('/list', 'CoachController@listCoachs');
-});
+
+Route::get('/admin/coach', 'CoachController@coachPage');

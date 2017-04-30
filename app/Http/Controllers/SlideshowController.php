@@ -12,7 +12,7 @@ class SlideshowController extends Controller
 {
 
     public function slideShowPage(){
-        return view('admin.slideshow',array("title"=>"Slide Show"));
+        return view('admin.slideshow.list',array("title"=>"Slide Show"));
     }
 
     public function listSlideshows(){

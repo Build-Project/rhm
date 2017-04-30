@@ -9,5 +9,5 @@ class coach extends Model
     protected $table = 'z_coach';
     protected $primaryKey = 'COID';
 
-    protected $timestamp = false;
+    public $timestamps = false;
 }

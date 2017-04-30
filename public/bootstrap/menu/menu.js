@@ -473,7 +473,6 @@ function selectMenu(menu_slide){
     	document.title = 'Top Customer Report | CRM';
         break;
        
-       
     default:
     	$("#dashboard").removeAttr("class").attr('class', 'treeview active');
     	document.title = 'Dashbord';

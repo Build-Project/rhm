@@ -184,7 +184,7 @@
                                                 <th>Status</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
-                                            <tr dir-paginate="m in modules | itemsPerPage: pageSize.row">
+                                            <tr dir-paginate="m in modules | itemsPerPage: pageSize.row" class="ng-cloak">
                                                 <td>{[{m.MID}]}</td>
                                                 <td>{[{m.MName}]}</td>
                                                 <td>{[{m.MDescription}]}</td>

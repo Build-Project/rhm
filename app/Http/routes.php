@@ -51,3 +51,9 @@ Route::group(['prefix'=>'admin/module'], function(){
 });
 
 Route::get('/admin/coach', 'CoachController@coachPage');
+
+
+Route::group(['prefix'=>'admin/song'], function(){
+    Route::get('/', 'SongController@listPage');
+    Route::get('/list', 'SongController@listSongs');
+});

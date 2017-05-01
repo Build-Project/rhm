@@ -56,7 +56,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="box-body" style="background: url({{asset('images/boxed-bg.jpg')}});">
                     <div class="clearfix"></div>
                     <div class="panel panel-default">
@@ -94,16 +93,16 @@
                                                 <th>ID</th>
                                                 <th>Name</th>
                                                 <th>Description</th>
-                                                <th>Uploaded Date</th>
-                                                <th>Uploaded By</th>
+                                                <th>Status</th>
+                                                <th>Image</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
                                             <tr dir-paginate="s in slideshows | itemsPerPage:pageSize.row" class="ng-cloak">
                                                 <td>{[{s.SLSID}]}</td>
                                                 <td>{[{s.SLSName}]}</td>
                                                 <td>{[{s.SLSDescription}]}</td>
-                                                <td>{[{s.CDate}]}</td>
-                                                <td>{[{s.CBy}]}</td>
+                                                <td>{[{s.SLStatus == 1?'Publish': 'Unpublish'}]}</td>
+                                                <td>{{URL::asset('/images/slides')}}/{[{s.SLSImage}]}</td>
                                                 <td class="text-center" style="min-width: 100px;">
                                                     <a href="{{url('/admin/slideshow/edit/{[{s.SLSID}]}')}}"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>
                                                     <a href="#" ng-click="deleteModule('m.MID')"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
@@ -112,6 +111,7 @@
                                             </tr>
                                         </table>
                                     </div>
+                                    <dir-pagination-controls max-size="pageSize.row" direction-links="true" boundary-links="true"></dir-pagination-controls>
                                 </div>
                             </div>
                         </div>

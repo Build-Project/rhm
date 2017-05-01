@@ -4,10 +4,10 @@
                         <!-- Sidebar user panel -->
                         <ul class="sidebar-menu">
                             <li id="dashboard"><a href="/">
-                                <img src="{{asset('images/Dashboard.png')}}" style="width: 16px;"> &nbsp;&nbsp;<span>Dashboard</span> </a>
+                                <i class="fa fa-home" aria-hidden="true"></i>&nbsp;<span>Dashboard</span> </a>
                             </li>
                             <li id="slideshow"><a href="{{url('/admin/slideshow')}}">
-                                <img src="{{asset('images/Marketing.png')}}" style="width: 16px;"> &nbsp;&nbsp;<span>Slide Show</span> </a>
+                                <i class="fa fa-picture-o" aria-hidden="true"></i> &nbsp;<span>Slide Show</span> </a>
                             </li>
                         </ul>
                     </section>

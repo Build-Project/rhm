@@ -29,6 +29,11 @@
 						<a class="btn btn-info btn-app" id="btn_clear"> <i class="fa fa-refresh" aria-hidden="true"></i>Clear</a> 
 						<a class="btn btn-info btn-app" href="{{url('/admin/slideshow')}}"> <i class="fa fa-reply"></i> Back </a>
 					</div>
+                     @if(session('msg'))
+                        <div class="alert alter-info">
+                            <span>{{session('msg')}}</span>
+                        </div>
+                    @endif
 					<div class="clearfix"></div>
 					<div class="col-sm-2"><h4>Overview</h4></div>
 					<div class="col-sm-12"><hr style="margin-top: 3px;" /></div>

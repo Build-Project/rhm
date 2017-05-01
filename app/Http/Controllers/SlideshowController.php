@@ -23,7 +23,7 @@ class SlideshowController extends Controller
     public function create(Request $request){
         $slide = new Slideshow();
         $slide->SLSName = $request->get('slideName');
-        $slide->SLSDescription = $request->get('slideDes');
+        $slide->SLSDescription = $request->get('sildeDes');
         $slide->SLStatus = $request->get('slideStatus');
         $extension = $request->file('slideImage')->getClientOriginalExtension();
         $fileName = rand(11111,99999).'.'.$extension;
@@ -35,8 +35,8 @@ class SlideshowController extends Controller
         );
 
         if($slide->save()){
-             return response(['msg'=>'Slideshow created successfully!', 'status'=>'success']);
+             return redirect()->back()->with('msg', 'Slideshow created successfully.');
         }
-       return response(['msg'=>'fialed creating slideshow.','status'=>failed]);
+        return redirect()->back()->with('msg', 'Failed creating slideshow.');
     }
 }

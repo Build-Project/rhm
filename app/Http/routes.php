@@ -57,3 +57,10 @@ Route::group(['prefix'=>'admin/song'], function(){
     Route::get('/', 'SongController@listPage');
     Route::get('/list', 'SongController@listSongs');
 });
+
+
+//Album route
+Route::group(['prefix'=>'admin/album'], function(){
+    Route::get('/', 'AlbumController@albumPage');
+    Route::get('/list', 'AlbumController@listAlbums');
+});

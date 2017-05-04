@@ -15,7 +15,7 @@ class SongController extends Controller
     }
 
     public function listSongs(){
-        $songs = Song::all();
+        $songs = Song::with('album')->where('AID', $songs->SAlbumID)->get();
         return $songs->toJson();
     }
 }

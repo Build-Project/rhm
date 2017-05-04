@@ -13,6 +13,6 @@ class Album extends Model
     const UPDATED_AT = 'MDate';
 
     public function songs(){
-        return $this->hasMany('App\Models\Song');
+        return $this->hasMany('App\Models\Song', 'SAlbumID');
     }
 }

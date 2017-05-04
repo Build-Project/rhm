@@ -5,16 +5,16 @@
 @section('content')
     <script type="text/javascript">
 
-        var app = angular.module('song', ['angularUtils.directives.dirPagination','angular-loading-bar', 'ngAnimate']).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+        var app = angular.module('album', ['angularUtils.directives.dirPagination','angular-loading-bar', 'ngAnimate']).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
             cfpLoadingBarProvider.includeSpinner = false;
         }]).config(function($interpolateProvider) {
             $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
         });
         
-        app.controller('songController',['$scope','$http',function($scope, $http) {
-            $scope.listSongs = function () {
-                $http.get("/admin/song/list").success(function (response) {
-                    $scope.songs = response;
+        app.controller('albumController',['$scope','$http',function($scope, $http) {
+            $scope.listAlbums = function () {
+                $http.get("/admin/album/list").success(function (response) {
+                    $scope.albums = response;
                 });
             };
 
@@ -36,13 +36,13 @@
             $scope.pageSize.row = $scope.pageSize.rows[1].value;
         }]);
 </script>
-    <div class="content-wrapper" ng-app="song" ng-controller="songController">
+    <div class="content-wrapper" ng-app="album" ng-controller="albumController">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Songs</h1>
+            <h1>Albums</h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="#"><i class="fa fa-dashboard"></i>Songs</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i>Albums</a></li>
             </ol>
         </section>
 
@@ -52,7 +52,7 @@
                 <div class="box-header with-border">
                     <div style="background: #fff;margin-top: 15px;">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-left: -5px;">
-                            <a href='{{url('/admin/song/create')}}' class="btn btn-info btn-app" ><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
+                            <a href='{{url('/admin/album/create')}}' class="btn btn-info btn-app" ><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class="row">
-                                    <div class="tablecontainer table-responsive" data-ng-init="listSongs()">
+                                    <div class="tablecontainer table-responsive" data-ng-init="listAlbums()">
                                         <table class="table table-hover">
                                             <tr>
                                                 <th>ID</th>
@@ -96,10 +96,10 @@
                                                 <th>URL</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
-                                            <tr dir-paginate="s in songs | itemsPerPage:pageSize.row" class="ng-cloak">
-                                                <td>{[{s.SID}]}</td>
-                                                <td>{[{s.SName}]}</td>
-                                                <td>{[{s.album.AName}]}</td>
+                                            <tr dir-paginate="al in albums | itemsPerPage:pageSize.row" class="ng-cloak">
+                                                <td>{[{al.AID}]}</td>
+                                                <td>{[{al.AName}]}</td>
+                                                <td>{[{al.AType}]}</td>
                                                 <td>{{URL::asset('/images/slides')}}/{[{s.SLSImage}]}</td>
                                                 <td class="text-center" style="min-width: 100px;">
                                                     <a href="{{url('/admin/slideshow/edit/{[{s.SLSID}]}')}}"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>

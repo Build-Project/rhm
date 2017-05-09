@@ -92,7 +92,8 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
-                                                <th>Album</th>
+                                                <th>Type</th>
+                                                <th>Production</th>
                                                 <th>URL</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
@@ -100,11 +101,12 @@
                                                 <td>{[{al.AID}]}</td>
                                                 <td>{[{al.AName}]}</td>
                                                 <td>{[{al.AType}]}</td>
+                                                <td>{[{al.production}]}</td>
                                                 <td>{{URL::asset('/images/slides')}}/{[{s.SLSImage}]}</td>
                                                 <td class="text-center" style="min-width: 100px;">
-                                                    <a href="{{url('/admin/slideshow/edit/{[{s.SLSID}]}')}}"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>
-                                                    <a href="#" ng-click="deleteModule('m.MID')"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
-                                                    <a href="/module/view/{[{m.MID}]}"><button type="button" data-toggle="tooltip" class="btn btn-xs" title="view"><i class="fa fa-eye text-info"></i></button></a>
+                                                    <a href="{{url('/admin/album/edit/{[{al.AID}]}')}}"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>
+                                                    <a href="#" ng-click="deleteModule('al.AID')"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
+                                                    <a href="{{url('/admin/album/view/{[{al.AID}]}')}}"><button type="button" data-toggle="tooltip" class="btn btn-xs" title="view"><i class="fa fa-eye text-info"></i></button></a>
                                                 </td>
                                             </tr>
                                         </table>

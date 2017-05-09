@@ -5,7 +5,7 @@
 		<!-- Tell the browser to be responsive to screen width -->
 		<meta name="viewport" content="initial-scale=1, user-scalable=no, maximum-scale=1, width=device-width">
 		<meta name="viewport" content="initial-scale=1, user-scalable=no, maximum-scale=1">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
 		<link rel="shortcut icon" type="image/png" href="resources/images/favicon.png"/>
 
 		<link type="text/css" href="{{asset('plugins/select2/select2.min.css')}}" rel="stylesheet">

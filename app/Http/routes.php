@@ -56,6 +56,10 @@ Route::get('/admin/coach', 'CoachController@coachPage');
 Route::group(['prefix'=>'admin/song'], function(){
     Route::get('/', 'SongController@listPage');
     Route::get('/list', 'SongController@listSongs');
+    Route::get('/create', function(){
+        return view('admin.song.create_song', array('title'=>'Create Song | Page'));
+    });
+    Route::post('/create', 'SongController@CreateSong');
 });
 
 

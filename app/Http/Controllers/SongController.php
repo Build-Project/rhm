@@ -18,4 +18,25 @@ class SongController extends Controller
         $songs = Song::with('album')->where('AID', $songs->SAlbumID)->get();
         return $songs->toJson();
     }
+
+    public function createSong(Request $request){
+        $song = new Song();
+        $song->SName = $request->get('songName');
+        $song->SAlias = $request->get('songAlias');
+        $song->SAlbumID = $request->get('albumId');
+
+        $extension = $request->file('songFile')->getClientOriginalExtension();
+        $fileName = rand(11111,99999).'.'.$extension;
+
+        $song->SURL = $fileName;
+
+        $request->file('songFile')->move(
+            base_path().'/public/album/'.$song->SAlbumID.'/',$fileName
+        );
+
+        if($song->save()){
+             return redirect()->back()->with('msg', 'Song created successfully.');
+        }
+        return redirect()->back()->with('msg', 'Failed creating song.');
+    }
 }

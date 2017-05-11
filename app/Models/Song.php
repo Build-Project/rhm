@@ -13,6 +13,6 @@ class Song extends Model
     const UPDATED_AT = 'MDate';
 
     public function album(){
-        return $this->belongsTo('App\Models\Album');    
+        return $this->belongsTo('App\Models\Album','SAlbumID');    
     }
 }

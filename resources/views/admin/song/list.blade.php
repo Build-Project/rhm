@@ -36,7 +36,7 @@
             $scope.pageSize.row = $scope.pageSize.rows[1].value;
         }]);
 </script>
-    <div class="content-wrapper" ng-app="song" ng-controller="songController">
+    <div class="content-wrapper"  ng-app="song" ng-controller="songController" style="min-height: 396px;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>Songs</h1>
@@ -92,6 +92,7 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
+                                                <th>Alias</th>
                                                 <th>Album</th>
                                                 <th>URL</th>
                                                 <th class="text-center">Action</th>
@@ -99,12 +100,13 @@
                                             <tr dir-paginate="s in songs | itemsPerPage:pageSize.row" class="ng-cloak">
                                                 <td>{[{s.SID}]}</td>
                                                 <td>{[{s.SName}]}</td>
+                                                <td>{[{s.SAlias}]}</td>
                                                 <td>{[{s.album.AName}]}</td>
-                                                <td>{{URL::asset('/images/slides')}}/{[{s.SLSImage}]}</td>
+                                                <td>{{URL::asset('/album/')}}/{[{s.SURL}]}</td>
                                                 <td class="text-center" style="min-width: 100px;">
-                                                    <a href="{{url('/admin/slideshow/edit/{[{s.SLSID}]}')}}"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>
-                                                    <a href="#" ng-click="deleteModule('m.MID')"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
-                                                    <a href="/module/view/{[{m.MID}]}"><button type="button" data-toggle="tooltip" class="btn btn-xs" title="view"><i class="fa fa-eye text-info"></i></button></a>
+                                                    <a href="{{url('/admin/song/edit/{[{s.SID}]}')}}"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>
+                                                    <a href="#" ng-click="deleteSong('s.SID')"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
+                                                    <a href="/admin/song/view/{[{s.SID}]}"><button type="button" data-toggle="tooltip" class="btn btn-xs" title="view"><i class="fa fa-eye text-info"></i></button></a>
                                                 </td>
                                             </tr>
                                         </table>
@@ -117,5 +119,6 @@
                 </div>
             </div>
         </section>
+        <div class="clearfix"></div>
     </div>
 @endsection

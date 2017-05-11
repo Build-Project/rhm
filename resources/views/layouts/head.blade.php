@@ -44,6 +44,9 @@
 			.content-wrapper{
 				min-height: 80vh;
 			}
+			.panel {
+   				 margin-bottom: 0px;
+			}
 		</style>
 
 		<script src="{{asset('bootstrap/js/jquery.min.js')}}"></script>

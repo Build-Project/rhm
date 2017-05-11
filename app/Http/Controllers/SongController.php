@@ -15,7 +15,9 @@ class SongController extends Controller
     }
 
     public function listSongs(){
-        $songs = Song::with('album')->where('AID', $songs->SAlbumID)->get();
+        $songs = Song::with(array('album'=>function($query){
+            $query->select("AID", "AName");
+        }))->get();
         return $songs->toJson();
     }
 
@@ -28,7 +30,7 @@ class SongController extends Controller
         $extension = $request->file('songFile')->getClientOriginalExtension();
         $fileName = rand(11111,99999).'.'.$extension;
 
-        $song->SURL = $fileName;
+        $song->SURL = $song->SAlbumID.'/'.$fileName;
 
         $request->file('songFile')->move(
             base_path().'/public/album/'.$song->SAlbumID.'/',$fileName

@@ -9,6 +9,12 @@
                             <li id="slideshow"><a href="{{url('/admin/slideshow')}}">
                                 <i class="fa fa-picture-o" aria-hidden="true"></i> &nbsp;<span>Slide Show</span> </a>
                             </li>
+                            <li id="slideshow"><a href="{{url('/admin/album')}}">
+                                <i class="fa fa-folder-open-o" aria-hidden="true"></i> &nbsp;<span>Albums</span> </a>
+                            </li>
+                            <li id="slideshow"><a href="{{url('/admin/song')}}">
+                                <i class="fa fa-music" aria-hidden="true"></i> &nbsp;<span>Songs</span> </a>
+                            </li>
                         </ul>
                     </section>
                 </aside>

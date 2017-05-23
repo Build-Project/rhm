@@ -50,7 +50,7 @@
                                     <div class="col-xs-12">
                                         <label class="font-label">Alias Name</label>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="songAlias" name="songAlias">
+                                            <input type="text" class="form-control" id="songAlias" name="songAlias" accept="video/*">
                                         </div>
                                     </div>
                                     <!--<div class="col-xs-12">
@@ -84,5 +84,6 @@
 			</div>
 		</div>
 	</section>
+    <div class="clearfix"></div>
 </div>
 @endsection

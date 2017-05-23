@@ -15,10 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::auth();
+Route::auth();
 
 
 //Route::get('/login', 'LoginController@showLoginPage');
+//Route::post('/login', 'LoginController@customLogin');
 Route::post('/register',array('uses'=>'Auth\AuthController@create'));
 Route::get('/admin', 'DashboardController@index');
 
@@ -60,6 +61,7 @@ Route::group(['prefix'=>'admin/song'], function(){
         return view('admin.song.create_song', array('title'=>'Create Song | Page'));
     });
     Route::post('/create', 'SongController@CreateSong');
+    Route::delete('/delete/{sid}', 'SongController@deleteSong');
 });
 
 

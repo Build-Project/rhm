@@ -25,17 +25,10 @@
                 }
             }
         });
-        var docHeight = $(window).height();
-        var footerHeight = $('#footer').height();
-        var footerTop = $('#footer').position().top + footerHeight;
-        if (footerTop < docHeight) {
-            //$('#footer').css('margin-top', 20+ (docHeight - footerTop) + 'px');
-            //$('#footer').css('margin-top', 100 + (docHeight - footerTop) + 'px');
-        }
     });
 </script>
 
-<body class="hold-transition login-page" ng-app="viewDatabase">
+<body class="hold-transition login-page">
 <div style="">
     <div style="border: 1px solid #B9292D; margin-bottom: 10px;"></div>
     <div class="">
@@ -48,7 +41,7 @@
 </div>
 <div class="login-box">
     <div class="login-logo">
-        <!--<img src="images/hmfm/hmfm.png" />-->
+        <img src="{{asset('images/hmfm/hmfm.png')}}" />
     </div>
     <div class="login-box-body">
         <h3 class="login-box-msg">Admin | Login</h3>
@@ -80,13 +73,14 @@
         </form>
     </div>
     <div>
-      
+    <div class="clearfix"></div>
     </div>
-    <img src="images/shadow.png" style="width: 100%;" />
+    <img src="{{asset('/images/shadow.png')}}" style="width: 100%;" />
     <!-- /.login-box-body -->
+    
 </div>
+
 <!-- /.login-box -->
-<script src="js.mine/function.mine.js"></script>
 
 </body>
 </html>

@@ -18,6 +18,43 @@
                 });
             };
 
+            $scope.deleteSong = function(sid){
+                swal({   
+                    title: "<span style='font-size: 25px;'>You are about to delete Song with ID: <span class='color_msg'>"+sid+"</span>.</span>",   
+                    text: "Click OK to continue or CANCEL to abort.",   
+                    type: "info", 
+                    html: true,
+                    showCancelButton: true,   
+                    closeOnConfirm: false,   
+                    showLoaderOnConfirm: true, 
+                    
+                }, function(){
+                    $http({
+                        method:"DELETE",
+                        url:'{{url('/admin/song/delete')}}'+'/'+sid
+                    }).success(function(response){
+                        if(response.status == "success"){
+                            swal({
+                                title:"SUCCESSFUL",
+                                text: response.msg, 
+                                type:"success", 
+                                html: true,
+                                timer: 2000,
+                            });
+                            $scope.listSongs();
+                        }else{
+                             swal({
+                                title:"FAILED!",
+                                text: response.msg, 
+                                type:"danger", 
+                                html: true,
+                                timer: 2000,
+                            });
+                        }
+                    });
+                });
+            }
+
             $scope.sort = function (keyname) {
                 $scope.sortKey = keyname;   //set the sortKey to the param passed
                 $scope.reverse = !$scope.reverse; //if true make it false and vice versa
@@ -105,7 +142,7 @@
                                                 <td>{{URL::asset('/album/')}}/{[{s.SURL}]}</td>
                                                 <td class="text-center" style="min-width: 100px;">
                                                     <a href="{{url('/admin/song/edit/{[{s.SID}]}')}}"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>
-                                                    <a href="#" ng-click="deleteSong('s.SID')"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
+                                                    <a href="#" ng-click="deleteSong(s.SID)"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
                                                     <a href="/admin/song/view/{[{s.SID}]}"><button type="button" data-toggle="tooltip" class="btn btn-xs" title="view"><i class="fa fa-eye text-info"></i></button></a>
                                                 </td>
                                             </tr>

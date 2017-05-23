@@ -41,4 +41,12 @@ class SongController extends Controller
         }
         return redirect()->back()->with('msg', 'Failed creating song.');
     }
+
+    function deleteSong($sid, Request $request){
+        $song = Song::find($sid);
+        if($song->delete($request->all())){
+            return response(['msg'=>'Song Deleted successfully!', 'status' => 'success']);
+        }
+        return response(['msg'=>'Failed Deleting song', 'status' => 'failed']);
+    }
 }

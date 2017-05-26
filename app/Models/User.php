@@ -9,13 +9,6 @@ class User extends Authenticatable
 {
     protected $table = 'z_user';
     protected $primaryKey = 'ZUID';
-    protected $maps = [
-        'userId' => 'ZUID',
-        'username' => 'ZUName',
-        'userType' => 'ZUType',
-        'password' => 'ZUPassword',
-        'role' => 'ZURole'
-    ];
 
     protected $fillable = [
         'ZUName', 'ZUPassword',
@@ -26,4 +19,9 @@ class User extends Authenticatable
     ];
 
     public $timestamps = false;
+
+    public function getAuthPassword()
+    {
+        return $this->ZUPassword;
+    }
 }

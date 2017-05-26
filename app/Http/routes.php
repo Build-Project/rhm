@@ -19,7 +19,7 @@ Route::auth();
 
 
 //Route::get('/login', 'LoginController@showLoginPage');
-//Route::post('/login', 'LoginController@customLogin');
+Route::post('/login','LoginController@customLogin');
 Route::post('/register',array('uses'=>'Auth\AuthController@create'));
 Route::get('/admin', 'DashboardController@index');
 
@@ -69,4 +69,13 @@ Route::group(['prefix'=>'admin/song'], function(){
 Route::group(['prefix'=>'admin/album'], function(){
     Route::get('/', 'AlbumController@albumPage');
     Route::get('/list', 'AlbumController@listAlbums');
+});
+
+
+//Article route
+Route::group(['prefix'=>'admin/article'], function(){
+    Route::get('/', 'ArticleController@articlePage');
+    Route::get('/list', 'ArticleController@listArticles');
+    Route::get('/create', 'ArticleController@createPage');
+    Route::post('/create', 'ArticleController@createArticle');
 });

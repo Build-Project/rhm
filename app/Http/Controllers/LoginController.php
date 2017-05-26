@@ -18,8 +18,13 @@ class LoginController extends Controller
 
     public function customLogin(Request $request){
         //dd($request->all());
-        if(Auth::attempt(['ZUName'=>$request->get('userName'),'ZUPassword'=>$request->get('password')])){
-            dd($request->get('userName'));
+        dd($request->get('userName'));
+        $userData = array(
+            'ZUName' => $request->get('userName'),
+            'ZUPassword' =>$request->get('password')
+        );
+        if(Auth::attempt($userData)){
+            
             return view('admin.index');
         }
         return redirect()->back();

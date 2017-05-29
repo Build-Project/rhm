@@ -16,8 +16,9 @@
         <script src="{{asset('plugins/fastclick/fastclick.min.js')}}"></script>
         <script src="{{asset('dist/js/app.min.js')}}"></script>
         <script src="{{asset('dist/js/demo.js')}}"></script>
+        <script src="{{asset('js/sweetalert.js')}}"></script>
+        @include('sweet::alert')
         <script type="text/javascript">
-
             $(document).ready(function() {
                 $('.summernote').summernote({
                     height: 400,

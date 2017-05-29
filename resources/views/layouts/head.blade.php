@@ -23,7 +23,7 @@
 		<link rel="stylesheet" href="{{asset('js/style.css')}}">
 		<link rel="stylesheet" href="{{asset('editor/font-awesome.min.css')}}">
 		<link rel="stylesheet" href="{{asset('editor/summernote.css')}}" >
-		<link rel="stylesheet" href="{{asset('dist/sweetalert/sweetalert.css')}}">
+		<link rel="stylesheet" href="{{asset('css/sweetalert.css')}}">
 		<link rel="stylesheet" href="{{asset('angular/css/angular-material.css')}}">
 		<link rel="stylesheet" href="{{asset('angular/css/loading-bar.css')}}">
 		<link rel="stylesheet" href="{{asset('angular/css/angular-block-ui.css')}}">
@@ -70,7 +70,6 @@
 		<script src="{{asset('js/jPages.js')}}"></script>
 		<script src="{{asset('editor/summernote.min.js')}}"></script>
 		<script src="{{asset('plugins/select2/select2.full.js')}}"></script>
-		<script src="{{asset('dist/sweetalert/sweetalert-dev.js')}}"></script>
 		<script src="{{asset('plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
 		<script src="{{asset('bootstrap/menu/menu.js')}}"></script>
 	</head>

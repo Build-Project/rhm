@@ -18,6 +18,37 @@
                 });
             };
 
+            $scope.deleteArticle = function(id){
+                swal({   
+                    title: "<span style='font-size: 25px;'>You are about to delete article with ID: <span class='color_msg'>"+id+"</span>.</span>",   
+                    text: "Click OK to continue or CANCEL to abort.",   
+                    type: "info", 
+                    html: true,
+                    showCancelButton: true,   
+                    closeOnConfirm: false,   
+                    showLoaderOnConfirm: true, 
+                    
+                }, function(){
+                    $http({
+                        url:'{{url('/admin/article/delete/')}}'+'/'+id,
+                        method:'DELETE'
+                    }).success(function(response){
+                            if(response.status == 'success'){
+                                swal({
+                                        title:"SUCCESSFUL",
+                                        text: response.msg, 
+                                        type:"success", 
+                                        html: true,
+                                        timer: 2000,
+                                    });
+                            }
+                            setTimeout(function(){		
+                                $scope.listArticles();
+                            },2000);
+                        });
+                });
+            }
+
             $scope.sort = function (keyname) {
                 $scope.sortKey = keyname;   //set the sortKey to the param passed
                 $scope.reverse = !$scope.reverse; //if true make it false and vice versa
@@ -105,7 +136,7 @@
                                                 <td>{[{art.CBy}]}</td>
                                                 <td class="text-center" style="min-width: 100px;">
                                                     <a href="{{url('/admin/article/edit/{[{art.ARTID}]}')}}"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>
-                                                    <a href="#" ng-click="deleteModule('art.ARTID')"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
+                                                    <a href="#" ng-click="deleteArticle(art.ARTID)"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
                                                     <a href="{{url('/admin/article/view/{[{art.ARTID}]}')}}"><button type="button" data-toggle="tooltip" class="btn btn-xs" title="view"><i class="fa fa-eye text-info"></i></button></a>
                                                 </td>
                                             </tr>

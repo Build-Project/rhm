@@ -78,4 +78,7 @@ Route::group(['prefix'=>'admin/article'], function(){
     Route::get('/list', 'ArticleController@listArticles');
     Route::get('/create', 'ArticleController@createPage');
     Route::post('/create', 'ArticleController@createArticle');
+    Route::delete('/delete/{id}', 'ArticleController@deleteArticle');
+    Route::get('/edit/{id}', 'ArticleController@editPage');
+    Route::post('/edit/{id}', 'ArticleController@editArticle');
 });

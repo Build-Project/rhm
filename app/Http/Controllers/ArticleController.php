@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
-
+use Carbon\Carbon;
 class ArticleController extends Controller
 {
     public function articlePage(){
@@ -25,15 +25,44 @@ class ArticleController extends Controller
 
     public function createArticle(Request $request){
         $article = new Article();
-        $article->ARTName = $request->get('art_name');
-        $article->ARTCategory = $request->get('art_category');
-        $article->ARTDescription = $request->get('art_des');
-        $article->CDate = new Datetime();
-        $article->CBy = $request->get('art_user');
-
+        $article->ARTName = $request->get('artName');
+        $article->ARTCategory = $request->get('artCategory');
+        $article->ARTDescription = $request->get('artDes');
+        $article->CDate = Carbon::now();
+        $article->CBy = $request->get('artUser');
         if($article->save()){
-             return response(['msg'=>'Article Inserted Successfully!', 'status'=>'success']);
+            alert()->success('Success', 'Article inserted successfully!')->autoclose(3000);
+            return redirect('admin/article');
         }
-        return response(['msg'=>'Failed inserting the article.', 'status'=>'failed']);
+        alert()->error('Failed', 'Failed inserting article!')->autoclose(3000);
+        return redirect()->back();
+    }
+
+    public function deleteArticle($id){
+        $article = Article::find($id);
+        if($article->delete()){
+            return response(['msg'=>'Article Delete Successfully!', 'status'=>'success']);
+        }
+        return response(['msg'=>'Failed deleting the article.', 'status'=>'failed']);
+    }
+
+    public function editPage($id){
+        $article = Article::find($id);
+        return view('admin.article.update_article', array('title'=>'Edit Article Page','article'=>$article));
+    }
+
+    public function editArticle(Request $request, $id){
+        $article =  Article::find($id);
+        $article->ARTName = $request->get('artName');
+        $article->ARTCategory = $request->get('artCategory');
+        $article->ARTDescription = $request->get('artDes');
+        $article->MDate = Carbon::now();
+        $article->MBy = $request->get('artUser');
+        if($article->save()){
+            alert()->success('Success', 'Article updated successfully!')->autoclose(2000);
+            return redirect('admin/article');
+        }
+        alert()->error('Failed', 'Failed updating article!')->autoclose(2000);
+        return redirect()->back();
     }
 }

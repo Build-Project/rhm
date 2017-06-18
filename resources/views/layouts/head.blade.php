@@ -12,19 +12,15 @@
 		<link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 		<link rel="stylesheet" href="{{asset('bootstrap/css/bootstrapValidator.css')}}">
 		<link rel="stylesheet" href="{{asset('bootstrap/css/font-awesome.min.css')}}">
-		<link rel="stylesheet" href="{{asset('bootstrap/css/ionicons.min.css')}}">
 		<link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker-bs3.css')}}">
 		<link rel="stylesheet" href="{{asset('plugins/timepicker/bootstrap-timepicker.min.css')}}">
 
 		<link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">
 		<link rel="stylesheet" href="{{asset('dist/css/skins/_all-skins.min.css')}}">
 		<link rel="stylesheet" href="{{asset('bootstrap/css/fileinput.min.css')}}">
-		<link rel="stylesheet" href="{{asset('editor/summernote.css')}}">
 		<link rel="stylesheet" href="{{asset('js/style.css')}}">
 		<link rel="stylesheet" href="{{asset('editor/font-awesome.min.css')}}">
-		<link rel="stylesheet" href="{{asset('editor/summernote.css')}}" >
 		<link rel="stylesheet" href="{{asset('css/sweetalert.css')}}">
-		<link rel="stylesheet" href="{{asset('angular/css/angular-material.css')}}">
 		<link rel="stylesheet" href="{{asset('angular/css/loading-bar.css')}}">
 		<link rel="stylesheet" href="{{asset('angular/css/angular-block-ui.css')}}">
 		<link rel="stylesheet" href="{{asset('plugins/toggle/bootstrap-toggle.min.css')}}">
@@ -53,7 +49,6 @@
 		<script src="{{asset('bootstrap/js/angular.min.js')}}"></script>
 		<script src="{{asset('bootstrap/js/jquerysession.js')}}"></script>
 		<script src="{{asset('bootstrap/js/bootstrap-filestyle.min.js')}}"></script>
-		<script src="{{asset('angular/angular-material.min.js')}}"></script>
 		<script src="{{asset('angular/angular-animate.min.js')}}"></script>
 		<script src="{{asset('angular/loading-bar.js')}}"></script>
 		<script src="{{asset('angular/angular-block-ui.js')}}"></script>

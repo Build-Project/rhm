@@ -137,7 +137,6 @@
                                                 <td class="text-center" style="min-width: 100px;">
                                                     <a href="{{url('/admin/article/edit/{[{art.ARTID}]}')}}"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>
                                                     <a href="#" ng-click="deleteArticle(art.ARTID)"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
-                                                    <a href="{{url('/admin/article/view/{[{art.ARTID}]}')}}"><button type="button" data-toggle="tooltip" class="btn btn-xs" title="view"><i class="fa fa-eye text-info"></i></button></a>
                                                 </td>
                                             </tr>
                                         </table>

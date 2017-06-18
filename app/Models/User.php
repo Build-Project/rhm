@@ -4,24 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-class User extends Authenticatable
+class User extends Model implements AuthenticatableContract
 {
+    use Authenticatable;
     protected $table = 'z_user';
     protected $primaryKey = 'ZUID';
 
-    protected $fillable = [
-        'ZUName', 'ZUPassword',
-    ];
-
-    protected $hidden = [
-        'ZUPassword'
-    ];
-
     public $timestamps = false;
-
-    public function getAuthPassword()
-    {
-        return $this->ZUPassword;
-    }
 }

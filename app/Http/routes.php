@@ -15,11 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::auth();
-
-
-//Route::get('/login', 'LoginController@showLoginPage');
-Route::post('/login','LoginController@customLogin');
+Route::get('/login', 'LoginController@showLoginPage');
+Route::post('/login','LoginController@authenticate');
 Route::post('/register',array('uses'=>'Auth\AuthController@create'));
 Route::get('/admin', 'DashboardController@index');
 
@@ -72,6 +69,14 @@ Route::group(['prefix'=>'admin/album'], function(){
 });
 
 
+//Album Tpye
+Route::group(['prefix'=>'admin/album-type'], function(){
+    Route::get('/', 'AlbumTypeController@showAlbumTypePage');
+    Route::get('/list', 'AlbumTypeController@listAlbumType');
+    Route::get('/create', 'AlbumTypeController@showCreateAlbumTypePage');
+    Route::post('/create', 'AlbumTypeController@createAlbumType');
+});
+
 //Article route
 Route::group(['prefix'=>'admin/article'], function(){
     Route::get('/', 'ArticleController@articlePage');
@@ -81,4 +86,16 @@ Route::group(['prefix'=>'admin/article'], function(){
     Route::delete('/delete/{id}', 'ArticleController@deleteArticle');
     Route::get('/edit/{id}', 'ArticleController@editPage');
     Route::post('/edit/{id}', 'ArticleController@editArticle');
+});
+
+//Production route
+
+Route::group(['prefix'=>'admin/production'], function(){
+    Route::get('/', 'ProductionController@showProductionPage');
+    Route::get('/list', 'ProductionController@listProduction');
+    Route::get('/create', 'ProductionController@showCreateProductionPage');
+    Route::post('/create', 'ProductionController@createProduction');
+    Route::delete('/delete/{id}', 'ProductionController@deleteProduction');
+    Route::get('/edit/{id}', 'ProductionController@showEditProductionPage');
+    Route::put('/edit/{id}', 'ProductionController@editProduction');
 });

@@ -50,9 +50,9 @@
             <!-- Default box -->
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    <div style="background: #fff;margin-top: 15px;">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-left: -5px;">
-                            <a href='{{url('/admin/album/create')}}' class="btn btn-info btn-app" ><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
+                    <div style="background: #fff;margin-top: 10px;">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px;">
+                            <a href='{{url('/admin/album/create')}}' class="btn btn-default" ><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
                         </div>
                     </div>
                 </div>
@@ -94,19 +94,18 @@
                                                 <th>Name</th>
                                                 <th>Type</th>
                                                 <th>Production</th>
-                                                <th>URL</th>
+                                                <th>Thumbnail</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
                                             <tr dir-paginate="al in albums | itemsPerPage:pageSize.row" class="ng-cloak">
                                                 <td>{[{al.AID}]}</td>
                                                 <td>{[{al.AName}]}</td>
-                                                <td>{[{al.AType}]}</td>
-                                                <td>{[{al.production}]}</td>
-                                                <td>{{URL::asset('/images/slides')}}/{[{s.SLSImage}]}</td>
+                                                <td>{[{al.type.TName}]}</td>
+                                                <td>{[{al.production.ProName}]}</td>
+                                                <td>{[{al.AThumb}]}</td>
                                                 <td class="text-center" style="min-width: 100px;">
                                                     <a href="{{url('/admin/album/edit/{[{al.AID}]}')}}"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="edit"><i class="fa fa-pencil text-primary"></i></button></a>
                                                     <a href="#" ng-click="deleteModule('al.AID')"><button type="button" class="btn btn-xs" data-toggle="tooltip" title="delete"><i class="fa fa-trash text-danger"></i></button></a>
-                                                    <a href="{{url('/admin/album/view/{[{al.AID}]}')}}"><button type="button" data-toggle="tooltip" class="btn btn-xs" title="view"><i class="fa fa-eye text-info"></i></button></a>
                                                 </td>
                                             </tr>
                                         </table>

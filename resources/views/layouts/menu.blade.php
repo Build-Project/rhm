@@ -9,8 +9,15 @@
                             <li id="slideshow"><a href="{{url('/admin/slideshow')}}">
                                 <i class="fa fa-picture-o fa-fw" aria-hidden="true"></i> &nbsp;<span>Slide Show</span> </a>
                             </li>
-                            <li id="album"><a href="{{url('/admin/album')}}">
+                            <li class="treeview" id="album"><a href="{{url('/admin/album')}}">
                                 <i class="fa fa-folder-open-o fa-fw fa-rotate-270" aria-hidden="true"></i> &nbsp;<span>Albums</span> </a>
+                                <ul class="treeview-menu" id="ul_album">
+                                    <li id="ul_li_type">
+                                        <a href="{{url('/admin/album-type')}}"> 
+                                            <i class='fa fa-circle-o color_menu' aria-hidden='true' id="album_icon_type"></i> <span>Type</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li id="song"><a href="{{url('/admin/song')}}">
                                 <i class="fa fa-music fa-fw" aria-hidden="true"></i> &nbsp;<span>Songs</span> </a>

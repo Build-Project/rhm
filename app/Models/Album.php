@@ -15,4 +15,12 @@ class Album extends Model
     public function songs(){
         return $this->hasMany('App\Models\Song', 'SAlbumID');
     }
+
+    public function type(){
+        return $this->belongsTo('App\Models\AlbumType', 'ATypeID');
+    }
+
+    public function production(){
+        return $this->belongsTo('App\Models\Production', 'AProID');
+    }
 }

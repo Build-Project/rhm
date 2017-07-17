@@ -10,4 +10,8 @@ class AlbumType extends Model
     protected $primaryKey = 'TID';
 
     public $timestamps = false;
+
+    public function albums(){
+        return $this->hasMany('App\Models\Album', 'ATypeID');
+    }
 }
